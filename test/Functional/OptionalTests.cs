@@ -6,7 +6,7 @@ namespace UtilitiesAndAbstractions.Functional
     public sealed class OptionalTests
     {
         [Fact]
-        public void CanBeOfSomeValue()
+        public void Can_be_of_some_value()
         {
             var optional = Optional.OfSome("some value");
 
@@ -14,7 +14,7 @@ namespace UtilitiesAndAbstractions.Functional
         }
 
         [Fact]
-        public void CanBeOfNoneValue()
+        public void Can_be_of_none_value()
         {
             var optional = Optional.OfNone();
 
@@ -22,7 +22,7 @@ namespace UtilitiesAndAbstractions.Functional
         }
 
         [Fact]
-        public void UnwrapsUnderlyingValueWhenItIsPresent()
+        public void Unwraps_underlying_value_when_having_some_value()
         {
             var optional = Optional.OfSome("some value");
 
@@ -32,7 +32,7 @@ namespace UtilitiesAndAbstractions.Functional
         }
 
         [Fact]
-        public void UnwrapsFallbackValueWhenUnderlyingValueIsNotPresent()
+        public void Unwraps_fallback_value_when_having_none_value()
         {
             var optional = Optional.OfNone();
 
