@@ -30,5 +30,15 @@ namespace UtilitiesAndAbstractions.Functional
 
             value.Should().Be("some value");
         }
+
+        [Fact]
+        public void UnwrapsFallbackValueWhenUnderlyingValueIsNotPresent()
+        {
+            var optional = Optional.OfNone();
+
+            var value = optional.Unwrap("fallback value");
+
+            value.Should().Be("fallback value");
+        }
     }
 }
