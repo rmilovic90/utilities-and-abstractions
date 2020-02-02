@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Xunit;
 
 namespace UtilitiesAndAbstractions.Functional
@@ -11,6 +12,14 @@ namespace UtilitiesAndAbstractions.Functional
             var optional = Optional.OfSome("some value");
 
             optional.Should().BeOfType(typeof(Some<string>));
+        }
+
+        [Fact]
+        public void Accepts_default_value_of_a_value_type_as_the_underlying_value()
+        {
+            Action createOptional = () => Optional.OfSome(default(int));
+
+            createOptional.Should().NotThrow();
         }
 
         [Fact]
