@@ -1,15 +1,17 @@
 ﻿namespace UtilitiesAndAbstractions.Functional
 {
-    public static class Optional
+    public abstract class Optional
     {
-        public static Optional<T> OfSome<T>(T value) => new Some<T>();
+        public static Optional OfSome<T>(T value) => new Some<T>();
+
+        public static Optional OfNone() => new None();
     }
 
-    public abstract class Optional<T>
+    public sealed class Some<T> : Optional
     {
     }
 
-    public sealed class Some<T> : Optional<T>
+    public sealed class None : Optional
     {
     }
 }
