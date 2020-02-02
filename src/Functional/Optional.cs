@@ -1,4 +1,7 @@
-﻿namespace UtilitiesAndAbstractions.Functional
+﻿using System;
+using System.Collections.Generic;
+
+namespace UtilitiesAndAbstractions.Functional
 {
     public abstract class Optional
     {
@@ -11,6 +14,12 @@
     {
         public Some(T value)
         {
+            if (!typeof(T).IsValueType
+                && EqualityComparer<T>.Default.Equals(value, default))
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
+
             Value = value;
         }
 

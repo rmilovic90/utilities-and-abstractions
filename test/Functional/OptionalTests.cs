@@ -23,6 +23,14 @@ namespace UtilitiesAndAbstractions.Functional
         }
 
         [Fact]
+        public void Rejects_null_value_of_a_reference_type_as_the_underlying_value()
+        {
+            Action createOptional = () => Optional.OfSome<string>(null);
+
+            createOptional.Should().ThrowExactly<ArgumentNullException>();
+        }
+
+        [Fact]
         public void Can_be_of_none_value()
         {
             var optional = Optional.OfNone();
