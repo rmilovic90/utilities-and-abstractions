@@ -23,6 +23,14 @@ namespace UtilitiesAndAbstractions.Functional
         }
 
         [Fact]
+        public void Rejects_null_value_of_a_nullable_value_type_as_the_underlying_value()
+        {
+            Action createOptional = () => Optional.OfSome<int?>(null);
+
+            createOptional.Should().ThrowExactly<ArgumentNullException>();
+        }
+
+        [Fact]
         public void Rejects_null_value_of_a_reference_type_as_the_underlying_value()
         {
             Action createOptional = () => Optional.OfSome<string>(null);

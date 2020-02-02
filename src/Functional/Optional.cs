@@ -14,11 +14,8 @@ namespace UtilitiesAndAbstractions.Functional
     {
         public Some(T value)
         {
-            if (!typeof(T).IsValueType
-                && EqualityComparer<T>.Default.Equals(value, default))
-            {
+            if (value == null)
                 throw new ArgumentNullException(nameof(value));
-            }
 
             Value = value;
         }
