@@ -8,7 +8,7 @@ namespace UtilitiesAndAbstractions.Functional
         [Fact]
         public void CanBeOfSomeValue()
         {
-            var optional = Optional.OfSome("Some value");
+            var optional = Optional.OfSome("some value");
 
             optional.Should().BeOfType(typeof(Some<string>));
         }
@@ -19,6 +19,16 @@ namespace UtilitiesAndAbstractions.Functional
             var optional = Optional.OfNone();
 
             optional.Should().BeOfType(typeof(None));
+        }
+
+        [Fact]
+        public void UnwrapsUnderlyingValueWhenItIsPresent()
+        {
+            var optional = Optional.OfSome("some value");
+
+            var value = optional.Unwrap("fallback value");
+
+            value.Should().Be("some value");
         }
     }
 }
