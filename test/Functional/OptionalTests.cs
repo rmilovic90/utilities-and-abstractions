@@ -57,13 +57,43 @@ namespace UtilitiesAndAbstractions.Functional
         }
 
         [Fact]
-        public void Unwraps_fallback_value_when_having_none_value()
+        public void Unwraps_provided_fallback_value_when_having_none_value()
         {
             var optional = Optional.OfNone();
 
             var value = optional.Unwrap("fallback value");
 
             value.Should().Be("fallback value");
+        }
+
+        [Fact]
+        public void Unwraps_default_value_for_a_value_type_when_having_none_value_and_not_providing_fallback_value()
+        {
+            var optional = Optional.OfNone();
+
+            var value = optional.Unwrap<int>();
+
+            value.Should().Be(default);
+        }
+
+        [Fact]
+        public void Unwraps_null_value_for_a_nullable_value_type_when_having_none_value_and_not_providing_fallback_value()
+        {
+            var optional = Optional.OfNone();
+
+            var value = optional.Unwrap<int?>();
+
+            value.Should().BeNull();
+        }
+
+        [Fact]
+        public void Unwraps_null_value_for_a_reference_type_when_having_none_value_and_not_providing_fallback_value()
+        {
+            var optional = Optional.OfNone();
+
+            var value = optional.Unwrap<string>();
+
+            value.Should().BeNull();
         }
     }
 }
