@@ -4,6 +4,11 @@ namespace UtilitiesAndAbstractions.Functional
 {
     public abstract class Optional
     {
+        public static Optional Of<T>(T value) =>
+            value == null
+                ? OfNone()
+                : OfSome(value);
+
         public static Optional OfSome<T>(T value) => new Some<T>(value);
 
         public static Optional OfNone() => new None();

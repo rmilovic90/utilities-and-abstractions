@@ -11,7 +11,8 @@ namespace UtilitiesAndAbstractions.Functional
         {
             var optional = Optional.OfSome("some value");
 
-            optional.Should().BeOfType(typeof(Some<string>));
+            optional.Should().BeOfType<Some<string>>();
+            optional.As<Some<string>>().Value.Should().Be("some value");
         }
 
         [Fact]
@@ -43,7 +44,7 @@ namespace UtilitiesAndAbstractions.Functional
         {
             var optional = Optional.OfNone();
 
-            optional.Should().BeOfType(typeof(None));
+            optional.Should().BeOfType<None>();
         }
 
         [Fact]
@@ -94,6 +95,49 @@ namespace UtilitiesAndAbstractions.Functional
             var value = optional.Unwrap<string>();
 
             value.Should().BeNull();
+        }
+
+        [Fact]
+        public void Has_none_value_when_created_from_null_value_of_a_nullable_value_type()
+        {
+            var optional = Optional.Of<int?>(null);
+
+            optional.Should().BeOfType<None>();
+        }
+
+        [Fact]
+        public void Has_none_value_when_created_from_null_value_of_a_reference_type()
+        {
+            var optional = Optional.Of<string>(null);
+
+            optional.Should().BeOfType<None>();
+        }
+
+        [Fact]
+        public void Has_some_value_when_created_from_a_value_type()
+        {
+            var optional = Optional.Of(1);
+
+            optional.Should().BeOfType<Some<int>>();
+            optional.As<Some<int>>().Value.Should().Be(1);
+        }
+
+        [Fact]
+        public void Has_some_value_when_created_from_non_null_value_of_a_nullable_value_type()
+        {
+            var optional = Optional.Of<int?>(1);
+
+            optional.Should().BeOfType<Some<int?>>();
+            optional.As<Some<int?>>().Value.Should().Be(1);
+        }
+
+        [Fact]
+        public void Has_some_value_when_created_from_non_null_value_of_a_reference_type()
+        {
+            var optional = Optional.Of("some value");
+
+            optional.Should().BeOfType<Some<string>>();
+            optional.As<Some<string>>().Value.Should().Be("some value");
         }
     }
 }
