@@ -16,7 +16,7 @@ namespace UtilitiesAndAbstractions.Functional
 
     public sealed class Some<T> : Optional
     {
-        public Some(T value)
+        internal Some(T value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
@@ -29,5 +29,6 @@ namespace UtilitiesAndAbstractions.Functional
 
     public sealed class None : Optional
     {
+        internal None() { }
     }
 }
