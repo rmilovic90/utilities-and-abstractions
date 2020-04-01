@@ -1,34 +1,16 @@
-﻿using System;
-
-namespace UtilitiesAndAbstractions.Functional
+﻿namespace UtilitiesAndAbstractions.Functional
 {
-    public abstract class Optional
+    public abstract class Optional<T>
     {
-        public static Optional Of<T>(T value) =>
+        public static Optional<T> Of(T value) =>
             value == null
                 ? OfNone()
                 : OfSome(value);
 
-        public static Optional OfSome<T>(T value) => new Some<T>(value);
+        public static Optional<T> OfSome(T value) => new Some<T>(value);
 
-        public static Optional OfNone() => new None();
-    }
+        public static Optional<T> OfNone() => new None<T>();
 
-    public sealed class Some<T> : Optional
-    {
-        internal Some(T value)
-        {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value));
-
-            Value = value;
-        }
-
-        public T Value { get; }
-    }
-
-    public sealed class None : Optional
-    {
-        internal None() { }
+        public abstract T Unwrap(T fallbackValue = default);
     }
 }
