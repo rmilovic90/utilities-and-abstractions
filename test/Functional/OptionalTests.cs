@@ -180,5 +180,35 @@ namespace UtilitiesAndAbstractions.Functional
 
             foldedValue.Should().Be("No value.");
         }
+
+        [Fact]
+        public void Folds_to_default_value_for_a_value_type_when_having_none_value_and_not_providing_fallback_value()
+        {
+            var optional = Optional<int>.OfNone();
+
+            var foldedValue = optional.Fold(value => value * 0.2);
+
+            foldedValue.Should().Be(default);
+        }
+
+        [Fact]
+        public void Folds_to_null_value_for_a_nullable_value_type_when_having_none_value_and_not_providing_fallback_value()
+        {
+            var optional = Optional<int?>.OfNone();
+
+            var foldedValue = optional.Fold(value => value * 0.2);
+
+            foldedValue.Should().BeNull();
+        }
+
+        [Fact]
+        public void Folds_to_null_value_for_a_reference_type_when_having_none_value_and_not_providing_fallback_value()
+        {
+            var optional = Optional<string>.OfNone();
+
+            var foldedValue = optional.Fold(value => $"Value is: {value}.");
+
+            foldedValue.Should().BeNull();
+        }
     }
 }

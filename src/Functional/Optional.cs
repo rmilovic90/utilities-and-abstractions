@@ -17,6 +17,6 @@ namespace UtilitiesAndAbstractions.Functional
 
         public abstract Optional<TMapped> Map<TMapped>(Func<T, TMapped> mapper);
 
-        public abstract TMapped Fold<TMapped>(Func<T, TMapped> mapper, TMapped fallbackValue);
+        public abstract TMapped Fold<TMapped>(Func<T, TMapped> mapper, TMapped fallbackValue = default);
     }
 }
