@@ -141,13 +141,24 @@ namespace UtilitiesAndAbstractions.Functional
         }
 
         [Fact]
-        public void Is_of_none_value_when_mapped_from_none_value()
+        public void Has_none_value_when_mapped_from_none_value()
         {
             var optional = Optional<int>.OfNone();
 
             var mappedOptional = optional.Map(value => $"Value is {value}.");
 
             mappedOptional.Should().BeOfType<None<string>>();
+        }
+
+        [Fact]
+        public void Has_some_value_with_mapped_underlying_value_when_mapped_from_some_value()
+        {
+            var optional = Optional<int>.OfSome(1);
+
+            var mappedOptional = optional.Map(value => $"Value is {value}.");
+
+            mappedOptional.Should().BeOfType<Some<string>>();
+            mappedOptional.As<Some<string>>().Value.Should().Be("Value is 1.");
         }
     }
 }
