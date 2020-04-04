@@ -16,5 +16,7 @@ namespace UtilitiesAndAbstractions.Functional
         public abstract T Unwrap(T fallbackValue = default);
 
         public abstract Optional<TMapped> Map<TMapped>(Func<T, TMapped> mapper);
+
+        public abstract TMapped Fold<TMapped>(Func<T, TMapped> mapper);
     }
 }

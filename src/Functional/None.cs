@@ -10,5 +10,10 @@ namespace UtilitiesAndAbstractions.Functional
 
         public override Optional<TMapped> Map<TMapped>(Func<T, TMapped> mapper) =>
             Optional<TMapped>.OfNone();
+
+        public override TMapped Fold<TMapped>(Func<T, TMapped> mapper)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

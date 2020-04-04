@@ -14,9 +14,11 @@ namespace UtilitiesAndAbstractions.Functional
 
         public T Value { get; }
 
-        public override T Unwrap(T fallbackValue) => Value;
+        public override T Unwrap(T fallbackValue = default) => Value;
 
         public override Optional<TMapped> Map<TMapped>(Func<T, TMapped> mapper) =>
             Optional<TMapped>.OfSome(mapper(Value));
+
+        public override TMapped Fold<TMapped>(Func<T, TMapped> mapper) => mapper(Value);
     }
 }

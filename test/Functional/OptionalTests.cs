@@ -160,5 +160,15 @@ namespace UtilitiesAndAbstractions.Functional
             mappedOptional.Should().BeOfType<Some<string>>();
             mappedOptional.As<Some<string>>().Value.Should().Be("Value is 1.");
         }
+
+        [Fact]
+        public void Folds_underlying_value_when_having_some_value()
+        {
+            var optional = Optional<int>.OfSome(1);
+
+            var foldedValue = optional.Fold(value => $"Value is {value}.");
+
+            foldedValue.Should().Be("Value is 1.");
+        }
     }
 }
