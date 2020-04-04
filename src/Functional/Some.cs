@@ -15,5 +15,10 @@ namespace UtilitiesAndAbstractions.Functional
         public T Value { get; }
 
         public override T Unwrap(T fallbackValue) => Value;
+
+        public override Optional<TMapped> Map<TMapped>(Func<T, TMapped> mapper)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

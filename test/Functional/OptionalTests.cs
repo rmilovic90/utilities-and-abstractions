@@ -139,5 +139,15 @@ namespace UtilitiesAndAbstractions.Functional
             optional.Should().BeOfType<Some<string>>();
             optional.As<Some<string>>().Value.Should().Be("some value");
         }
+
+        [Fact]
+        public void Is_of_none_value_when_mapped_from_none_value()
+        {
+            var optional = Optional<int>.OfNone();
+
+            var mappedOptional = optional.Map(value => $"Value is {value}.");
+
+            mappedOptional.Should().BeOfType<None<string>>();
+        }
     }
 }
