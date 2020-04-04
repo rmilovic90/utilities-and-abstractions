@@ -162,13 +162,23 @@ namespace UtilitiesAndAbstractions.Functional
         }
 
         [Fact]
-        public void Folds_underlying_value_when_having_some_value()
+        public void Folds_to_mapped_underlying_value_when_having_some_value()
         {
             var optional = Optional<int>.OfSome(1);
 
-            var foldedValue = optional.Fold(value => $"Value is {value}.");
+            var foldedValue = optional.Fold(value => $"Value is {value}.", "No value.");
 
             foldedValue.Should().Be("Value is 1.");
+        }
+
+        [Fact]
+        public void Folds_to_provided_fallback_value_when_having_none_value()
+        {
+            var optional = Optional<int>.OfNone();
+
+            var foldedValue = optional.Fold(value => $"Value is {value}.", "No value.");
+
+            foldedValue.Should().Be("No value.");
         }
     }
 }

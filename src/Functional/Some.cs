@@ -19,6 +19,6 @@ namespace UtilitiesAndAbstractions.Functional
         public override Optional<TMapped> Map<TMapped>(Func<T, TMapped> mapper) =>
             Optional<TMapped>.OfSome(mapper(Value));
 
-        public override TMapped Fold<TMapped>(Func<T, TMapped> mapper) => mapper(Value);
+        public override TMapped Fold<TMapped>(Func<T, TMapped> mapper, TMapped fallbackValue) => mapper(Value);
     }
 }
